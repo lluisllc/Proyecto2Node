@@ -2,19 +2,19 @@ const router = require("express").Router();
 
 const alert = require("alert");
 const isLoggedIn = require("../middleware/isLoggedIn");
-const Character = require("../models/Character.model");
+const Games = require("../models/Games.model");
 const User = require("../models/User.model");
 const Api = require("../services/ApiHandler");
 const gamesAPI = new Api()
 
-router.get('/characters', (req, res) => {
+router.get('/games', (req, res) => {
 
 
     gamesAPI
         .getAllGames()
         .then((allGames) => {
             console.log(allGames.data)
-            res.render(`characters/list`, { allGames: allGames.data})
+            res.render(`games/list`, { allGames: allGames.data })
 
         })
         .catch(err => console.log(err));
@@ -23,17 +23,17 @@ router.get('/characters', (req, res) => {
 router.post("/add-favorite", isLoggedIn, (req, res) => {
     const query = { name, status, species, gender, image, apiId } = req.body
     const idToCheck = req.body.apiId;
-    Character.find({ apiId: idToCheck })
+    Games.find({ apiId: idToCheck })
         .then(charArray => {
-            //comprobar si ese apiId ya esta en db characters
+            //comprobar si ese apiId ya esta en db games
             if (charArray.length === 0) {
-                Character
+                Games
                     .create(query)
                     .then(result => {
                         User
                             .findByIdAndUpdate(req.user._id, { $push: { favorites: result._id } })
                             .then(() => {
-                                res.redirect("/characters")
+                                res.redirect("/games")
                             })
                     })
                     .catch(err => console.log(err))
@@ -45,9 +45,9 @@ router.post("/add-favorite", isLoggedIn, (req, res) => {
                             User
                                 .findByIdAndUpdate(req.user._id, { $push: { favorites: charArray[0]._id } })
                                 .then(() => {
-                                    res.redirect("/characters")
+                                    res.redirect("/games")
                                 })
-                        } else { res.redirect("/characters") }
+                        } else { res.redirect("/games") }
                     })
                     .catch((err) => {
                         console.log(err)

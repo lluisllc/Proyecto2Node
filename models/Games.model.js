@@ -11,11 +11,11 @@ const gamesSchema = new Schema(
     genre: Number,
     platform: String,
     release_date: String,
-    comment: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
-    publisher: String,
-    developer: String,
-    release_date: String,
-    freetogame_profile_url: String,
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
+    // publisher: String,
+    // developer: String,
+    // release_date: String,
+    // freetogame_profile_url: String,
   },
   {
     timestamps: true,
@@ -36,4 +36,4 @@ gamesSchema.pre("save", function (next) {
 
 // const Games = model("Games", gamesSchema);
 
-module.exports = model("Character", gamesSchema);
+module.exports = model("Games", gamesSchema);
