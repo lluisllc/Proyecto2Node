@@ -1,16 +1,17 @@
 // service/index.js
 const axios = require('axios');
 
-class CharactersApi {
+class gamesApi {
   constructor() {
     this.api = axios.create({
-      baseURL: 'https://rickandmortyapi.com/api'
+      baseURL: 'https://www.freetogame.com/api'
+
     });
   }
-
-  getAllCharacters = () => this.api.get('/character');
+  getAllGames = () => this.api.get('/games');
+  getAllMobas = () => this.api.get('/games?category=moba');
 
 }
 
 
-module.exports = CharactersApi;
+module.exports = gamesApi;

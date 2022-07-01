@@ -1,14 +1,21 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const characterSchema = new Schema(
+const gamesSchema = new Schema(
   {
-    name: String,
-    status: String,
-    species: String,
-    gender: String,
-    image: String,
-    apiId: Number
+    id: Number,
+    title: String,
+    thumbnail: String,
+    short_description: String,
+    game_url: String,
+    genre: Number,
+    platform: String,
+    release_date: String,
+    comment: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
+    publisher: String,
+    developer: String,
+    release_date: String,
+    freetogame_profile_url: String,
   },
   {
     timestamps: true,
@@ -16,17 +23,17 @@ const characterSchema = new Schema(
 );
 
 
-characterSchema.pre("save", function(next) {
+gamesSchema.pre("save", function (next) {
   // console.log(this)
 
   const nameToUpper = this.name.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ')
 
   this.name = nameToUpper
 
-    next();
+  next();
 });
 
 
-// const Character = model("Character", userSchema);
+// const Games = model("Games", gamesSchema);
 
-module.exports = model("Character", characterSchema);
+module.exports = model("Character", gamesSchema);

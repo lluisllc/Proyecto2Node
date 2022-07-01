@@ -4,9 +4,9 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   username: String,
   password: String,
-  favorites:  [{	
+  favorites: [{
     type: Schema.Types.ObjectId,
-		ref: "Character"
+    ref: "Games"
   }]
   //referencias de la bd characrters
 });
