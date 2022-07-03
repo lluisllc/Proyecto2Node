@@ -19,9 +19,10 @@ router.get('/games', (req, res) => {
 })
 
 router.post("/add-favorite", isLoggedIn, (req, res) => {
-    const query = { id, title, game_url, genre } = req.body
-    console.log(req.body)
+    const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date } = req.body
     const idToCheck = req.body.id;
+    console.log(req.body)
+
     Games.find({ id: idToCheck })
         .then(charArray => {
             // comprobar si ese apiId ya esta en db games
@@ -56,14 +57,15 @@ router.post("/add-favorite", isLoggedIn, (req, res) => {
 })
 
 
-
 router.post("/delete-favorite", isLoggedIn, (req, res) => {
     const { id } = req.body
+    console.log(req.body)
     User.findByIdAndUpdate(req.user._id, { $pull: { favorites: id } })
         .then(() => {
             res.redirect("/profile")
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
+        
 })
 
 /**

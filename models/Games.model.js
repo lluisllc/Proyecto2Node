@@ -12,9 +12,9 @@ const gamesSchema = new Schema(
     platform: String,
     release_date: String,
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
-    // publisher: String,
+    publisher: String,
     // developer: String,
-    // release_date: String,
+    release_date: String,
     // freetogame_profile_url: String,
   },
   {
@@ -23,15 +23,15 @@ const gamesSchema = new Schema(
 );
 
 
-// gamesSchema.pre("save", function (next) {
-//   // console.log(this)
+gamesSchema.pre("save", function (next) {
+  // console.log(this)
 
-//   const nameToUpper = this.name.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ')
+  const nameToUpper = this.title.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ')
 
-//   this.name = nameToUpper
+  this.title = nameToUpper
 
-//   next();
-// });
+  next();
+});
 
 
 // const Games = model("Games", gamesSchema);
