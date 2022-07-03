@@ -4,6 +4,7 @@ const alert = require("alert");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const Games = require("../models/Games.model");
 const User = require("../models/User.model");
+const Comments = require("../models/Comments.model");
 const Api = require("../services/ApiHandler");
 const gamesAPI = new Api()
 
@@ -19,7 +20,7 @@ router.get('/games', (req, res) => {
 })
 
 router.post("/add-favorite", isLoggedIn, (req, res) => {
-    const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date } = req.body
+    const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date, comment } = req.body
     const idToCheck = req.body.id;
     console.log(req.body)
 
@@ -65,7 +66,41 @@ router.post("/delete-favorite", isLoggedIn, (req, res) => {
             res.redirect("/profile")
         })
         .catch(err => console.log(err));
-        
+
+})
+
+router.post("/add-comment", isLoggedIn, (req, res) => {
+    const query = { comment, user, game } = req.body
+    const idToCheck = req.body.id;
+    console.log(req.body)
+    console.log(req.body.id)
+
+    Comments
+        .create(query)
+        .then(result => {
+            Comments
+                .findByIdAndUpdate(req.comments.id, { $push: { comments: result.comment } })
+                .then(() => {
+                    res.redirect("/profile")
+                })
+        })
+        .catch(err => console.log(err))
+}
+)
+
+router.get('/details', (req, res) => {
+    const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date, comment } = req.body
+    const idDetails = req.body.id;
+    console.log(query.title)
+    console.log(req.body.id)
+    Games
+        .findById(idDetails)
+        .then((gameDetails) => {
+            console.log(gameDetails)
+            res.render(`games/details`, { gameDetails: gameDetails })
+
+        })
+        .catch(err => console.log(err));
 })
 
 /**

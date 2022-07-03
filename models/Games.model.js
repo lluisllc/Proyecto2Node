@@ -13,9 +13,9 @@ const gamesSchema = new Schema(
     release_date: String,
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
     publisher: String,
-    // developer: String,
+    developer: String,
     release_date: String,
-    // freetogame_profile_url: String,
+    freetogame_profile_url: String,
   },
   {
     timestamps: true,
