@@ -8,7 +8,7 @@ const gamesSchema = new Schema(
     thumbnail: String,
     short_description: String,
     game_url: String,
-    genre: Number,
+    genre: String,
     platform: String,
     release_date: String,
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
@@ -23,15 +23,15 @@ const gamesSchema = new Schema(
 );
 
 
-gamesSchema.pre("save", function (next) {
-  // console.log(this)
+// gamesSchema.pre("save", function (next) {
+//   // console.log(this)
 
-  const nameToUpper = this.name.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ')
+//   const nameToUpper = this.name.split(' ').map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(' ')
 
-  this.name = nameToUpper
+//   this.name = nameToUpper
 
-  next();
-});
+//   next();
+// });
 
 
 // const Games = model("Games", gamesSchema);

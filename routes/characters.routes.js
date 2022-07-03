@@ -8,12 +8,10 @@ const Api = require("../services/ApiHandler");
 const gamesAPI = new Api()
 
 router.get('/games', (req, res) => {
-
-
     gamesAPI
         .getAllGames()
         .then((allGames) => {
-            console.log(allGames.data)
+            // console.log(allGames.data)
             res.render(`games/list`, { allGames: allGames.data })
 
         })
@@ -21,11 +19,12 @@ router.get('/games', (req, res) => {
 })
 
 router.post("/add-favorite", isLoggedIn, (req, res) => {
-    const query = { name, status, species, gender, image, apiId } = req.body
-    const idToCheck = req.body.apiId;
-    Games.find({ apiId: idToCheck })
+    const query = { id, title, game_url, genre } = req.body
+    console.log(req.body)
+    const idToCheck = req.body.id;
+    Games.find({ id: idToCheck })
         .then(charArray => {
-            //comprobar si ese apiId ya esta en db games
+            // comprobar si ese apiId ya esta en db games
             if (charArray.length === 0) {
                 Games
                     .create(query)
@@ -52,12 +51,10 @@ router.post("/add-favorite", isLoggedIn, (req, res) => {
                     .catch((err) => {
                         console.log(err)
                     })
-
-
-
             }
         })
 })
+
 
 
 router.post("/delete-favorite", isLoggedIn, (req, res) => {
