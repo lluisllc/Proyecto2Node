@@ -20,4 +20,20 @@ Errores actuales:
 
 
 
-Esto es para borrarlo
+5. Ver cómo recuperar los múltiples comentarios del juego en la vista /details del mismo.
+   Probablemente editar el modelo de comentarios para añadir el id de API del juego y hacer luego la llamada a esa ID.
+
+---
+
+POST MVP:
+
+a) CSS
+b) Botón comentarios en profile según user
+c) Pantalla inicio: que muestre directamente el signup y el login
+d) Poder borrar el comentario
+e) Editar el comentario ?¿?¿
+
+---
+
+> > > > > > > main
+> > > > > > > Esto es para borrarlo
