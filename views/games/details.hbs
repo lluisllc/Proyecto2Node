@@ -1,17 +1,25 @@
-<h1>Feedback from {{game.title}}</h1>
 {{#with gameDetails}}
+<h1>More info about {{title}}</h1>
 <img src={{thumbnail}} alt={{title}}>
-<p>{{id}}</p>
-<p>{{short_description}}</p>
-<p>{{game_url}}</p>
-<p>{{genre}}</p>
-<p>{{platform}}</p>
-<p>{{publisher}}</p>
-<p>{{developer}}</p>
-<p>{{release_date}}</p>
-<p>{{freetogame_profile_url}}</p>
+<p type="hidden">{{id}}</p>
+<p>Short description: {{short_description}}</p>
+<p>Game_url: {{game_url}}</p>
+<p>Genre: {{genre}}</p>
+<p>Platform: {{platform}}</p>
+<p>Publisher: {{publisher}}</p>
+<p>Developer: {{developer}}</p>
+<p>Release date: {{release_date}}</p>
+<p>Profile url: {{freetogame_profile_url}}</p>
 
 {{/with}}
 
-<p>Users Feedback</p>
-<p>{{comment}}</p>
+<h2>Users Comments</h2>
+{{!-- <form action="/add-comment" method="post">
+<input type="hidden" name="_id" value={{_id}}>
+<div>
+<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
+Add a comment!
+</textarea>
+</div>
+<input type="submit" value="Submit">
+</form>  --}}

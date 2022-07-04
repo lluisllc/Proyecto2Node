@@ -82,7 +82,7 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
     Comment.create({ comment: comm, user: userID, game: idGame })
         .then(result => {
             console.log(result)
-            res.redirect("/profile")
+            res.redirect("/details")
         })
         .catch(err => console.log(err))
 }

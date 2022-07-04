@@ -10,12 +10,12 @@ const app = express();
 
 require("./config")(app);
 
-const projectName = "Proyecto-modelo";
-const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
+// const projectName = "Proyecto-modelo";
+// const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
-app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
+// app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
-app.locals.subtitle = "I'am the subtitle"
+// app.locals.subtitle = "I'am the subtitle"
 
 
 
