@@ -107,14 +107,6 @@ router.post('/details', (req, res) => {
                 .catch(err => console.log(err));
         })
         .catch(err => console.log(err));
-
-    // Comment.find({
-    //     idApiGame: idGame
-    // })
-    //     .then((singleComment) => {
-    //         res.render(`games/details`, { singleComment: singleComment })
-    //     })
-    //     .catch(err => console.log(err));
 })
 
 
