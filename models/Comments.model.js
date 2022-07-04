@@ -4,6 +4,7 @@ const { Schema, model } = require("mongoose");
 const commentsSchema = new Schema({
   comment: String,
   user: String,
+  idApiGame: Number,
   game: String,
 });
 

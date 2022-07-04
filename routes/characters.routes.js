@@ -77,12 +77,14 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
     const userID = req.user._id
     const comm = req.body.comments
     const idGame = req.body._id
-    console.log(comm, userID, idGame)
+    const idApi = req.body.id
+    console.log(comm, userID, idGame, idApi)
 
-    Comment.create({ comment: comm, user: userID, game: idGame })
+    Comment.create({ comment: comm, user: userID, idApiGame: idApi, game: idGame })
         .then(result => {
             console.log(result)
-            res.redirect("/details")
+            // res.redirect(`/details/id=${idGame}`)
+            res.redirect('/profile')
         })
         .catch(err => console.log(err))
 }
@@ -97,12 +99,20 @@ router.post('/details', (req, res) => {
     gamesAPI
         .getGameByID(idGame)
         .then((gameDetails) => {
+
             res.render(`games/details`, { gameDetails: gameDetails.data })
             // findbyID de los comentarios, necesitamos otra coma y pasar otro objeto (el juego)
 
         })
         .catch(err => console.log(err));
+
+    Comment.findById(idGame)
+        .then((singleComment) => {
+            res.render(`games/details`, { singleCommemnt: singleComment.data })
+        })
+        .catch(err => console.log(err));
 })
+
 
 
 /**

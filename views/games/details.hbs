@@ -13,8 +13,11 @@
 
 {{/with}}
 
-<<<<<<< Updated upstream
-<h2>Users Comments</h2>
+<h2>Users Feedback</h2>
+{{#each singleComment}}
+<p>Comment: {{comment}}</p>
+<p>User: {{user}}</p>
+{{/each}}
 {{!-- <form action="/add-comment" method="post">
 <input type="hidden" name="_id" value={{_id}}>
 <div>
@@ -23,9 +26,4 @@ Add a comment!
 </textarea>
 </div>
 <input type="submit" value="Submit">
-</form>  --}}
-=======
-<p>Users Feedback</p>
-<p>{{comment}}</p>
-{{!-- para borrar --}}
->>>>>>> Stashed changes
+</form> --}}
