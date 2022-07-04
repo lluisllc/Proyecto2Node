@@ -9,7 +9,7 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId, ref: "Games"
   }],
   comments: [{
-    type: Schema.Types.ObjectId, ref: 'Comments'
+    type: Schema.Types.ObjectId, ref: 'Comment'
   }],
 });
 

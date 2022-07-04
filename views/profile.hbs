@@ -1,12 +1,12 @@
-<h1>bienvenido {{user.username}}</h1>
+<h1>Welcome {{user.username}}</h1>
 {{#each user.favorites}}
 <img src={{thumbnail}} alt={{title}}>
-<p>{{id}}</p>
+<p>{{_id}}</p>
 <p>{{title}}</p>
 <p>{{genre}}</p>
 
 <form action="/add-comment" method="post">
-<input type="hidden" name="id" value={{id}}>
+<input type="hidden" name="_id" value={{_id}}>
 <div>
 <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
 Add a comment!

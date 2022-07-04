@@ -3,14 +3,10 @@ const { Schema, model } = require("mongoose");
 
 const commentsSchema = new Schema({
   comment: String,
-  user: [{
-    type: Schema.Types.ObjectId, ref: "User"
-  }],
-  game: [{
-    type: Schema.Types.ObjectId, ref: 'Games'
-  }],
+  user: String,
+  game: String,
 });
 
-const Comments = model("Comments", commentsSchema);
+const Comment = model("Comment", commentsSchema);
 
-module.exports = Comments;
+module.exports = Comment;

@@ -10,6 +10,8 @@ class gamesApi {
   }
   getAllGames = () => this.api.get('/games');
   getAllMobas = () => this.api.get('/games?category=moba');
+  getGameByID = (idGame) => this.api.get(`/game?id=${idGame}`)
+  // https://www.freetogame.com/api/game?id=452
 
 }
 

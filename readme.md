@@ -14,9 +14,9 @@ Solucionados errores anteriores.
 
 Errores actuales:
 
-1. Corta cualquier String que esté separado por espacios, quedándose lo primero que encuentra.
+~~1. Corta cualquier String que esté separado por espacios, quedándose lo primero que encuentra.~~
 
-2. El botón delete no funciona pese a haber revisado el código.
+~~2. El botón delete no funciona pese a haber revisado el código.~~
 
 3. El método post no envía correctamente el comentario a Mongo. Se crea el comment solo con _id y no existe el campo comentario en el propio Mongo.
 

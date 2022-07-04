@@ -11,7 +11,7 @@ const gamesSchema = new Schema(
     genre: String,
     platform: String,
     release_date: String,
-    comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
     publisher: String,
     developer: String,
     release_date: String,

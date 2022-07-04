@@ -4,7 +4,7 @@ const alert = require("alert");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const Games = require("../models/Games.model");
 const User = require("../models/User.model");
-const Comments = require("../models/Comments.model");
+const Comment = require("../models/Comments.model");
 const Api = require("../services/ApiHandler");
 const gamesAPI = new Api()
 
@@ -20,17 +20,19 @@ router.get('/games', (req, res) => {
 })
 
 router.post("/add-favorite", isLoggedIn, (req, res) => {
-    const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date, comment } = req.body
+    const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date } = req.body
     const idToCheck = req.body.id;
-    console.log(req.body)
+    // console.log(req.body)
 
     Games.find({ id: idToCheck })
         .then(charArray => {
             // comprobar si ese apiId ya esta en db games
+            console.log(charArray)
             if (charArray.length === 0) {
                 Games
                     .create(query)
                     .then(result => {
+                        console.log(result)
                         User
                             .findByIdAndUpdate(req.user._id, { $push: { favorites: result._id } })
                             .then(() => {
@@ -59,10 +61,12 @@ router.post("/add-favorite", isLoggedIn, (req, res) => {
 
 
 router.post("/delete-favorite", isLoggedIn, (req, res) => {
-    const { id } = req.body
+    const { _id } = req.body
     console.log(req.body)
-    User.findByIdAndUpdate(req.user._id, { $pull: { favorites: id } })
+    console.log('user:', req.user._id)
+    User.findByIdAndUpdate(req.user._id, { $pull: { favorites: _id } })
         .then(() => {
+
             res.redirect("/profile")
         })
         .catch(err => console.log(err));
@@ -70,38 +74,36 @@ router.post("/delete-favorite", isLoggedIn, (req, res) => {
 })
 
 router.post("/add-comment", isLoggedIn, (req, res) => {
-    const query = { comment, user, game } = req.body
-    const idToCheck = req.body.id;
-    console.log(req.body)
-    console.log(req.body.id)
+    const userID = req.user._id
+    const comm = req.body.comments
+    const idGame = req.body._id
+    console.log(comm, userID, idGame)
 
-    Comments
-        .create(query)
+    Comment.create({ comment: comm, user: userID, game: idGame })
         .then(result => {
-            Comments
-                .findByIdAndUpdate(req.comments.id, { $push: { comments: result.comment } })
-                .then(() => {
-                    res.redirect("/profile")
-                })
+            console.log(result)
+            res.redirect("/profile")
         })
         .catch(err => console.log(err))
 }
 )
 
-router.get('/details', (req, res) => {
+router.post('/details', (req, res) => {
     const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date, comment } = req.body
     const idDetails = req.body.id;
-    console.log(query.title)
-    console.log(req.body.id)
-    Games
-        .findById(idDetails)
+    const idGame = req.body.id
+    console.log(idGame)
+
+    gamesAPI
+        .getGameByID(idGame)
         .then((gameDetails) => {
-            console.log(gameDetails)
-            res.render(`games/details`, { gameDetails: gameDetails })
+            res.render(`games/details`, { gameDetails: gameDetails.data })
+            // findbyID de los comentarios, necesitamos otra coma y pasar otro objeto (el juego)
 
         })
         .catch(err => console.log(err));
 })
+
 
 /**
  * ---arrays
