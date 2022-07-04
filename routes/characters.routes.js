@@ -78,7 +78,8 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
     const comm = req.body.comments
     const idGame = req.body._id
     const idApi = req.body.id
-    console.log(comm, userID, idGame, idApi)
+    // console.log(comm, userID, idGame, idApi)
+    console.log(idApi)
 
     Comment.create({ comment: comm, user: userID, idApiGame: idApi, game: idGame })
         .then(result => {
@@ -92,7 +93,6 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
 
 router.post('/details', (req, res) => {
     const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date, comment } = req.body
-    const idDetails = req.body.id;
     const idGame = req.body.id
     console.log(idGame)
 
@@ -100,17 +100,21 @@ router.post('/details', (req, res) => {
         .getGameByID(idGame)
         .then((gameDetails) => {
 
-            res.render(`games/details`, { gameDetails: gameDetails.data })
-            // findbyID de los comentarios, necesitamos otra coma y pasar otro objeto (el juego)
-
+            return Comment.find({ idApiGame: idGame })
+                .then((singleComment) => {
+                    res.render(`games/details`, { gameDetails: gameDetails.data, singleComment: singleComment })
+                })
+                .catch(err => console.log(err));
         })
         .catch(err => console.log(err));
 
-    Comment.findById(idGame)
-        .then((singleComment) => {
-            res.render(`games/details`, { singleCommemnt: singleComment.data })
-        })
-        .catch(err => console.log(err));
+    // Comment.find({
+    //     idApiGame: idGame
+    // })
+    //     .then((singleComment) => {
+    //         res.render(`games/details`, { singleComment: singleComment })
+    //     })
+    //     .catch(err => console.log(err));
 })
 
 
