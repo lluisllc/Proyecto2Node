@@ -18,8 +18,8 @@ Errores actuales:
 
 ~~2. El botón delete no funciona pese a haber revisado el código.~~
 
-3. El método post no envía correctamente el comentario a Mongo. Se crea el comment solo con _id y no existe el campo comentario en el propio Mongo.
+3. El método post no envía correctamente el comentario a Mongo. Se crea el comment solo con \_id y no existe el campo comentario en el propio Mongo.
 
 4. El botón 'more info' navega a la vista /details pero no nos pinta los campos. Ver cómo recuperar los múltiples comentarios del juego en la vista /details del mismo.
 
-
+Esto es para borrarlo
