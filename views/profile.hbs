@@ -1,9 +1,11 @@
 <h1>Welcome {{user.username}}</h1>
-{{#each user.favorites}}
+{{#each userGames.favorites}}
 <img src={{thumbnail}} alt={{title}}>
 <p>{{id}}</p>
-<p>{{title}}</p>
-<p>{{genre}}</p>
+<p>Title: {{title}}</p>
+<p>Genre: {{genre}}</p>
+<p>Description: {{short_description}}</p>
+
 
 <form action="/add-comment" method="post">
 <input type="hidden" name="id" value={{id}}>

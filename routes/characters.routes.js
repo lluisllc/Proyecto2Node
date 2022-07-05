@@ -8,16 +8,32 @@ const Comment = require("../models/Comments.model");
 const Api = require("../services/ApiHandler");
 const gamesAPI = new Api()
 
-router.get('/games', (req, res) => {
+router.get('/games', isLoggedIn, (req, res) => {
     gamesAPI
         .getAllGames()
         .then((allGames) => {
-            // console.log(allGames.data)
-            res.render(`games/list`, { allGames: allGames.data })
+            res.render(`games/list`, { allGames: allGames.data, user: req.session.user })
 
         })
         .catch(err => console.log(err));
 })
+
+// router.get('/games', (req, res) => {
+//     gamesAPI
+//         .getAllGames()
+//         .then((allGames) => {
+//             console.log(req.session.user.username)
+//             return User.find(req.user)
+//             .then((user) => {
+//                 res.render(`games/list`, { allGames: allGames.data , user:user})
+//             })
+// console.log(allGames.data)
+//res.render(`games/list`, { allGames: allGames.data })
+
+//         })
+//         .catch(err => console.log(err));
+// })
+
 
 router.post("/add-favorite", isLoggedIn, (req, res) => {
     const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date } = req.body
@@ -109,6 +125,17 @@ router.post('/details', (req, res) => {
         .catch(err => console.log(err));
 })
 
+router.post("/edit-comment", isLoggedIn, (req, res) => {
+    const query = { commentID, comment, apiID } = req.body
+    console.log('Comment:', query)
+    Comment.updateOne({ _id: commentID }, { comment: comment })
+        .then(() => {
+
+            res.redirect("/profile")
+        })
+        .catch(err => console.log(err));
+
+})
 
 
 /**

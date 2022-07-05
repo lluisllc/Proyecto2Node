@@ -2,7 +2,7 @@
 <h1>More info about {{title}}</h1>
 <img src={{thumbnail}} alt={{title}}>
 <p type="hidden">{{id}}</p>
-<p>Short description: {{short_description}}</p>
+<p>Description: {{description}}</p>
 <p>Genre: {{genre}}</p>
 <p>Platform: {{platform}}</p>
 <p>Publisher: {{publisher}}</p>
@@ -16,7 +16,17 @@
 {{#each singleComment}}
 <p>Comment: {{comment}}</p>
 <p>User: {{user}}</p>
+<form action = "/edit-comment" method="POST">
+        <textarea class="text" name="comment">{{comment}}</textarea>
+        <input type="hidden" name="commentID" value="{{_id}}">
+        {{!-- <input type="hidden" name="apiID" value="{{id}}"> --}}
+        <button type="submit">Edit</button>
+        </form>
 {{/each}}
+
+{{!-- <input type="hidden" name="apiID" value="{{gameDetails.id}}">
+       
+        </form> --}}
 {{!-- <form action="/add-comment" method="post">
 <input type="hidden" name="_id" value={{_id}}>
 <div>

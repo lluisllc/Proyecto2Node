@@ -11,7 +11,7 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
   User.findById(req.user._id)
     .populate("favorites")
     .then((user) => {
-      res.render("profile", { user: user });
+      res.render("profile", { user: req.session.user, userGames: user });
     });
 });
 

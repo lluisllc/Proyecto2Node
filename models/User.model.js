@@ -8,9 +8,9 @@ const userSchema = new Schema({
   favorites: [{
     type: Schema.Types.ObjectId, ref: "Games"
   }],
-  comments: [{
-    type: Schema.Types.ObjectId, ref: 'Comment'
-  }],
+  // comments: [{
+  //   type: Schema.Types.ObjectId, ref: 'Comment'
+  // }],
 });
 
 const User = model("User", userSchema);
