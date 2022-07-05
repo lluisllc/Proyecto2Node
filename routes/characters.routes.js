@@ -91,13 +91,14 @@ router.post("/delete-favorite", isLoggedIn, (req, res) => {
 
 router.post("/add-comment", isLoggedIn, (req, res) => {
     const userID = req.user._id
+    const userNAME = req.user.username
     const comm = req.body.comments
     const idGame = req.body._id
     const idApi = req.body.id
     // console.log(comm, userID, idGame, idApi)
-    console.log(idApi)
+    console.log(userNAME)
 
-    Comment.create({ comment: comm, user: userID, idApiGame: idApi, game: idGame })
+    Comment.create({ comment: comm, username: userNAME, user: userID, idApiGame: idApi, game: idGame })
         .then(result => {
             console.log(result)
             // res.redirect(`/details/id=${idGame}`)

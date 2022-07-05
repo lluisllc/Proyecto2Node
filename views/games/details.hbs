@@ -15,9 +15,10 @@
 <h2>Users Feedback</h2>
 {{#each singleComment}}
 <p>Comment: {{comment}}</p>
-<p>User: {{user}}</p>
+{{!-- <p>User: {{user}}</p> --}}
+<p>User: {{username}}</p>
 
-{{!-- <p>Username: {{req.session.user}}</p> --}}
+
 <form action = "/edit-comment" method="POST">
         <textarea class="text" name="comment">{{comment}}</textarea>
         <input type="hidden" name="commentID" value="{{_id}}">
