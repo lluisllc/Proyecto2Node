@@ -118,7 +118,7 @@ router.post('/details', (req, res) => {
 
             return Comment.find({ idApiGame: idGame })
                 .then((singleComment) => {
-                    res.render(`games/details`, { gameDetails: gameDetails.data, singleComment: singleComment })
+                    res.render(`games/details`, { gameDetails: gameDetails.data, singleComment: singleComment, user: req.session.user })
                 })
                 .catch(err => console.log(err));
         })
@@ -126,16 +126,25 @@ router.post('/details', (req, res) => {
 })
 
 router.post("/edit-comment", isLoggedIn, (req, res) => {
-    const query = { commentID, comment, apiID } = req.body
-    console.log('Comment:', query)
+    const query = ({ commentID, comment, apiID } = req.body);
+    console.log("Comment:", query);
+
     Comment.updateOne({ _id: commentID }, { comment: comment })
         .then(() => {
-
-            res.redirect("/profile")
+            res.redirect("/games");
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
+});
 
-})
+router.post("/delete-comment", isLoggedIn, (req, res) => {
+    const query = ({ commentID, comment, apiID } = req.body);
+    //console.log("Comment:", query);
+    Comment.deleteOne({ _id: commentID })
+        .then(() => {
+            res.redirect("/games");
+        })
+        .catch((err) => console.log(err));
+});
 
 
 /**

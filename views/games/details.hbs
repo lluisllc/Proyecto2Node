@@ -16,11 +16,18 @@
 {{#each singleComment}}
 <p>Comment: {{comment}}</p>
 <p>User: {{user}}</p>
+
+{{!-- <p>Username: {{req.session.user}}</p> --}}
 <form action = "/edit-comment" method="POST">
         <textarea class="text" name="comment">{{comment}}</textarea>
         <input type="hidden" name="commentID" value="{{_id}}">
         {{!-- <input type="hidden" name="apiID" value="{{id}}"> --}}
         <button type="submit">Edit</button>
+        </form>
+
+        <form action = "/delete-comment" method="POST">
+        <input type="hidden" name="commentID" value="{{_id}}">
+        <button type="submit" >Delete</button>
         </form>
 {{/each}}
 
