@@ -20,3 +20,8 @@ h1 {
 .ninja{
   visibility:hidden
 }
+
+.center{
+  display: flex;
+  align-content: center;
+}
