@@ -31,7 +31,7 @@
       <div class="card text-white bg-dark mb-3">
       <div class="card-body">
       <form action="/add-comment" method="post">
-<input type="hidden" name="id" value={{id}}>
+<input type="hidden" id="botonComment" name="id" value={{id}}>
 <div>
 <textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
 Comment
@@ -57,18 +57,22 @@ Comment
           <div class="card bg-dark">
             <div class="card-body">
               <p class="card-text">
-                <form action = "/edit-comment" method="POST">
-                <textarea class="text form-control" name="comment">{{comment}}</textarea>
-              </p>
-            </div>
-          </div>
-          <div class="card bg-dark">
+        <form action = "/edit-comment" method="POST">
+        <textarea class="text form-control" name="comment">{{comment}}</textarea>
+        </p>
+        </div>
+        </div>
+        <div class="card bg-dark">
             <div class="card-body">
               <p class="card-text">
         <input type="hidden" name="commentID" value="{{_id}}">
+        <input type="hidden" name="username" value="{{username}}">
         <button type="submit" class="btn btn-secondary btn-block">Edit</button>
-        </form><form action = "/delete-comment" method="POST">
+         </form>
+       
+        <form action = "/delete-comment" method="POST">
         <input type="hidden" name="commentID" value="{{_id}}">
+         <input type="hidden" name="username" value="{{username}}">
         <button type="submit" class="btn btn-secondary btn-block">Delete</button>
         </form></p>
             </div>

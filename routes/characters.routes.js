@@ -102,7 +102,7 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
         .then(result => {
             console.log(result)
             // res.redirect(`/details/id=${idGame}`)
-            res.redirect('/games')
+            // res.redirect('/games')
         })
         .catch(err => console.log(err))
 }
@@ -111,11 +111,13 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
 router.post('/details', (req, res) => {
     const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date, comment } = req.body
     const idGame = req.body.id
-    console.log(idGame)
+    // console.log(idGame)
+    console.log(req.session.user)
 
     gamesAPI
         .getGameByID(idGame)
         .then((gameDetails) => {
+            
 
             return Comment.find({ idApiGame: idGame })
                 .then((singleComment) => {
@@ -127,24 +129,28 @@ router.post('/details', (req, res) => {
 })
 
 router.post("/edit-comment", isLoggedIn, (req, res) => {
-    const query = ({ commentID, comment, apiID } = req.body);
+    const query = ({ commentID, comment, username, apiID } = req.body);
     console.log("Comment:", query);
-
+    if (req.session.user.username === username) {
     Comment.updateOne({ _id: commentID }, { comment: comment })
         .then(() => {
-            res.redirect("/games");
+            res.redirect('/games');
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err));}
+    else {res.redirect("/games");}
 });
 
 router.post("/delete-comment", isLoggedIn, (req, res) => {
-    const query = ({ commentID, comment, apiID } = req.body);
-    //console.log("Comment:", query);
+    const query = ({ commentID, username } = req.body);
+    console.log("Username:", query);
+    if (req.session.user.username === username) {
     Comment.deleteOne({ _id: commentID })
         .then(() => {
+
             res.redirect("/games");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err));}
+    else {res.redirect("/games");}
 });
 
 

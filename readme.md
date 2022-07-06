@@ -37,3 +37,8 @@ e) Editar el comentario ?¿?¿
 
 > > > > > > > main
 > > > > > > > Esto es para borrarlo
+
+const btn = document.getElementById('botonComment');
+btn.addEventListener('click', function(event){
+  document.location.reload()
+});
