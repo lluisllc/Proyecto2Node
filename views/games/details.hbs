@@ -1,4 +1,74 @@
 {{#with gameDetails}}
+<div class="card-deck">
+  <div class="card bg-dark text-white mt-3 mb-3">
+    <img class="card-img" src={{thumbnail}} alt="Card image">
+    <div class="card-img-overlay">
+      <h4 class="card-title">{{title}}</h4>
+    </div>
+  </div>
+  <div class="card text-white bg-dark mt-3 mb-3" >
+    <div class="card-body">
+      <p class="card-text">Description: {{description}}</p>
+    </div>
+  </div>
+</div>
+{{/with}}
+<div class="card-deck">
+{{#with gameDetails}}
+  <div class="card text-white bg-dark mb-3">
+    <div class="card-body">
+      <p class="card-text"><h4>More Info: </h4><p>
+      <p type="hidden">{{id}}</p>
+      <p class="card-text">{{genre}}</p>
+      <p class="card-text">{{platform}}</p>
+      <p class="card-text">{{publisher}}</p>
+      <p class="card-text">{{developer}}</p>
+      <p class="card-text">{{release_date}}</p>
+      <a href={{freetogame_profile_url}} class="card-link">{{freetogame_profile_url}}</a>
+      {{!-- <p class="card-text"><small class="text-muted">{{freetogame_profile_url}}</small></p> --}}
+    </div>
+  </div>
+{{/with}}
+<div class="card text-white bg-dark mb-3">
+  <h4 class="card-header">
+    Comments:
+  </h4>
+  {{#each singleComment}}
+  <ul class="list-group list-group-flush text-white bg-dark">
+    <li class="list-group-item text-white bg-secondary  mb-3">User: {{username}}</li>
+    <li class="list-group-item text-white bg-secondary  mb-3">Comment: {{comment}}</li>
+    <li class="list-group-item text-white bg-dark mb-3">
+        <div class="card-group">
+          <div class="card bg-dark">
+            <div class="card-body">
+              <p class="card-text">
+                <form action = "/edit-comment" method="POST">
+                <textarea class="text form-control" name="comment">{{comment}}</textarea>
+              </p>
+            </div>
+          </div>
+          <div class="card bg-dark">
+            <div class="card-body">
+              <p class="card-text">
+        <input type="hidden" name="commentID" value="{{_id}}">
+        <button type="submit" class="btn btn-secondary btn-block">Edit</button>
+        </form><form action = "/delete-comment" method="POST">
+        <input type="hidden" name="commentID" value="{{_id}}">
+        <button type="submit" class="btn btn-secondary btn-block">Delete</button>
+        </form></p>
+            </div>
+          </div>
+        </div>
+    </li>
+  </ul>
+{{/each}}
+  </div>
+</div>
+
+
+
+
+{{!-- {{#with gameDetails}}
 <h1>More info about {{title}}</h1>
 <img src={{thumbnail}} alt={{title}}>
 <p type="hidden">{{id}}</p>
@@ -13,24 +83,27 @@
 {{/with}}
 
 <h2>Users Feedback</h2>
+
 {{#each singleComment}}
-<p>Comment: {{comment}}</p>
-{{!-- <p>User: {{user}}</p> --}}
 <p>User: {{username}}</p>
+<p>Comment: {{comment}}</p>
 
-
-<form action = "/edit-comment" method="POST">
-        <textarea class="text" name="comment">{{comment}}</textarea>
-        <input type="hidden" name="commentID" value="{{_id}}">
+{{!-- {{#if req.session.user === username }} --}}
+{{!-- <form action = "/edit-comment" method="POST">
+        <textarea class="text" name="comment"></textarea>
+        <input type="hidden" name="commentID" value="{{_id}}"> --}}
         {{!-- <input type="hidden" name="apiID" value="{{id}}"> --}}
-        <button type="submit">Edit</button>
+        {{!-- <button type="submit">Edit</button>
         </form>
+        <br>
 
         <form action = "/delete-comment" method="POST">
         <input type="hidden" name="commentID" value="{{_id}}">
         <button type="submit" >Delete</button>
         </form>
-{{/each}}
+        <br> --}} 
+{{!-- {{/if}} --}}
+{{!-- {{/each}} --}}
 
 {{!-- <input type="hidden" name="apiID" value="{{gameDetails.id}}">
        
