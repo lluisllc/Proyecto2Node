@@ -15,5 +15,9 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
     });
 });
 
+router.get("/register", (req, res, next) => {
+  res.render("register");
+});
+
 module.exports = router;
 //para borrar
