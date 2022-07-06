@@ -101,12 +101,12 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
     Comment.create({ comment: comm, username: userNAME, user: userID, idApiGame: idApi, game: idGame })
         .then(result => {
             console.log(result)
-            // res.redirect(`/details/id=${idGame}`)
             res.redirect('/games')
+            // res.redirect(`/details/id=${idGame}`)
+            // res.redirect(req.get('referer'));
         })
         .catch(err => console.log(err))
-}
-)
+})
 
 router.post('/details', (req, res) => {
     const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date, comment } = req.body
@@ -117,8 +117,6 @@ router.post('/details', (req, res) => {
     gamesAPI
         .getGameByID(idGame)
         .then((gameDetails) => {
-            
-
             return Comment.find({ idApiGame: idGame })
                 .then((singleComment) => {
                     res.render(`games/details`, { gameDetails: gameDetails.data, singleComment: singleComment, user: req.session.user })
@@ -132,25 +130,27 @@ router.post("/edit-comment", isLoggedIn, (req, res) => {
     const query = ({ commentID, comment, username, apiID } = req.body);
     console.log("Comment:", query);
     if (req.session.user.username === username) {
-    Comment.updateOne({ _id: commentID }, { comment: comment })
-        .then(() => {
-            res.redirect('/games');
-        })
-        .catch((err) => console.log(err));}
-    else {res.redirect("/games");}
+        Comment.updateOne({ _id: commentID }, { comment: comment })
+            .then(() => {
+                res.redirect('/games');
+            })
+            .catch((err) => console.log(err));
+    }
+    else { res.redirect("/games"); }
 });
 
 router.post("/delete-comment", isLoggedIn, (req, res) => {
     const query = ({ commentID, username } = req.body);
     console.log("Username:", query);
     if (req.session.user.username === username) {
-    Comment.deleteOne({ _id: commentID })
-        .then(() => {
+        Comment.deleteOne({ _id: commentID })
+            .then(() => {
 
-            res.redirect("/games");
-        })
-        .catch((err) => console.log(err));}
-    else {res.redirect("/games");}
+                res.redirect("/games");
+            })
+            .catch((err) => console.log(err));
+    }
+    else { res.redirect("/games"); }
 });
 
 
