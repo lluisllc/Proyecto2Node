@@ -8,7 +8,7 @@
   </div>
   <div class="card text-white bg-dark mt-3 mb-3" >
     <div class="card-body">
-      <p class="card-text">Description: {{description}}</p>
+      <p class="card-text">Description: <small>{{description}}</small></p>
     </div>
   </div>
 </div>
@@ -31,6 +31,7 @@
       </div>
       <div class="card text-white bg-dark mb-3">
       <div class="card-body">
+<p class="card-text"><h4>Add your comments: </h4><p></p>
 <form action="/add-comment" method="post">
 <input type="hidden" name="id" value={{id}}>
 <div>
@@ -40,6 +41,13 @@ Comment
 </div>
 <input type="submit"  value="Add" class="btn btn-secondary btn-block">
 </form>
+<br>
+<h5 class="text-danger"><em>Conduct guidelines:</em></h5>
+<ul>
+<li class="text-secondary"><em>Treat others how you would like to be treated.</em></li>
+<li class="text-secondary"><em>Treat people online the same way you would treat someone face-to-face. If you wouldn’t say it or do it in person, don’t do it online.</em></li>
+<li class="text-secondary"><em>Acknowledge and accept others’ ideas.</em></li>
+</ul>
     </div>
   </div>
 </div>

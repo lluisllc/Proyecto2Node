@@ -1,12 +1,30 @@
-<h1>Welcome {{user.username}}</h1>
+<div class='container'>
+<h1 class="text-white">Welcome {{user.username}}</h1>
+<br>
+<h4 class="text-white"><u>Games Wishlist</u></h4>
+<div class="row ">
 {{#each userGames.favorites}}
-<img src={{thumbnail}} alt={{title}}>
-<p>{{id}}</p>
-<p>Title: {{title}}</p>
-<p>Genre: {{genre}}</p>
-<p>Description: {{short_description}}</p>
-
-
+<div class='col-sm-4 mb-3'>
+    <div class='card bg-dark text-white shadow-sm'>
+      <form action = "/details" method="POST">
+      <input type="hidden" name="id" value="{{id}}">
+      <button class="btn btn-default">
+      <img src="{{thumbnail}}" class="img-fluid"/></button>
+      </form>
+    <div class="ml-3 mr-3">
+      <p>Title: {{title}}</p>
+      <p>Genre: {{genre}}</p>
+      <p>Description: {{short_description}}</p>
+    </div>
+    <form action = "/delete-favorite" method="POST">
+    <input type="hidden" name="_id" value={{_id}}>
+    <button type="submit" class="btn btn-secondary btn-block ">Delete favorite</button>
+    </form>
+  </div>
+</div>
+{{/each}}
+</div>
+</div>
 {{!-- <form action="/add-comment" method="post">
 <input type="hidden" name="id" value={{id}}>
 <div>
@@ -16,12 +34,3 @@ Add a comment!
 </div>
 <input type="submit" value="Crear">
 </form> --}}
-
-<form action = "/delete-favorite" method="POST">
-    <input type="hidden" name="_id" value={{_id}}>
-
-<button type="submit">Delete favorite</button>
-</form>
-<br>
-{{/each}}
-{{!-- para borrar --}}
