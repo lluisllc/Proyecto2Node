@@ -102,7 +102,7 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
         .then(result => {
             console.log(result)
             // res.redirect(`/details/id=${idGame}`)
-            res.redirect('/profile')
+            res.redirect('/games')
         })
         .catch(err => console.log(err))
 }

@@ -26,9 +26,24 @@
       <p class="card-text">{{release_date}}</p>
       <a href={{freetogame_profile_url}} class="card-link">{{freetogame_profile_url}}</a>
       {{!-- <p class="card-text"><small class="text-muted">{{freetogame_profile_url}}</small></p> --}}
+      </div>
+      </div>
+      <div class="card text-white bg-dark mb-3">
+      <div class="card-body">
+      <form action="/add-comment" method="post">
+<input type="hidden" name="id" value={{id}}>
+<div>
+<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:1.2em;">
+Comment
+</textarea>
+</div>
+<input type="submit" value="Add">
+</form>
     </div>
   </div>
+</div>
 {{/with}}
+<div class="card-deck">
 <div class="card text-white bg-dark mb-3">
   <h4 class="card-header">
     Comments:
