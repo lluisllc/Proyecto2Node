@@ -1,8 +1,23 @@
-{{!-- <h1>{{title}} 🚀</h1>
-<h2>{{subtitle}} 🚀</h2>
-<p>Welcome Ironhacker!</p> --}}
-{{!-- <h1 class="text-white">Welcome to the new and improved STEAM 2.0</h1> --}}
-<div class="center">
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <form class="form-example" action="/auth/login" method="POST">
+                 <div class="form-group text-white">
+                    <label for="username">Username:</label>
+                    <input type="text" class="form-control username" id="username" placeholder="Username..." name="username">
+                </div>
+                <div class="form-group text-white">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control password" id="password" placeholder="Password..." name="password">
+                    <small id="userHelp" class="form-text text-muted">We'll never ask for your password.</small>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-customized">Login</button>
+              </form>
+        </div>
+    </div>
+</div>
+
+{{!-- <div class="center">
 <form action="/auth/login" method="POST">
 <h2 class="text-white">Login</h2>
   <div class="form-group text-white">
@@ -16,4 +31,4 @@
   </div>
   <button type="submit" class="btn btn-secondary">Submit</button>
 </form>
-</div>
+</div> --}}

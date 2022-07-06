@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-100" lang="en">
 
    <head>
       <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 
    </head>
 
-   <body>
+   <body class="h-100">
       <nav class="navbar navbar-expand-lg navbar-light bg-dark rounded">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"></a>
@@ -37,11 +37,8 @@
               <li class="nav-item">
                 <a class="nav-link text-white"   href="/games">Games</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="/profile">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#">{{user.username}}</a>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/profile">{{user.username}}'s Profile</a>
               </li>
              <li class="nav-item">
                 <a class="nav-link text-white" href="/auth/logout">Logout</a>
