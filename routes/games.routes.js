@@ -10,7 +10,7 @@ const gamesAPI = new Api()
 
 router.get('/games', isLoggedIn, (req, res) => {
     gamesAPI
-        .getAllGames()
+        .getGameByPopularity()
         .then((allGames) => {
             res.render(`games/list`, { allGames: allGames.data, user: req.session.user })
 

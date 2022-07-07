@@ -9,8 +9,10 @@ class gamesApi {
     });
   }
   getAllGames = () => this.api.get('/games');
-  getAllMobas = () => this.api.get('/games?category=moba');
-  getGameByID = (idGame) => this.api.get(`/game?id=${idGame}`)
+  getAllShooters = () => this.api.get('/games?category=shooter');
+  getGameByID = (idGame) => this.api.get(`/game?id=${idGame}`);
+  getGameByPopularity = () => this.api.get('/games?sort-by=popularity')
+  
   // https://www.freetogame.com/api/game?id=452
 
 }
