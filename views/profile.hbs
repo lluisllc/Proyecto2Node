@@ -1,6 +1,6 @@
 <div class='container'>
 <br>
-<h1 class="text-white">{{user.username}} is currently playing:</h1>
+<h1 class="text-white">{{user.username}}'s FAVs:</h1>
 <br>
 
 
@@ -17,11 +17,11 @@
     <div class="ml-3 mr-3">
       <p>Title: {{title}}</p>
       <p>Genre: {{genre}}</p>
-      <p>Description: {{short_description}}</p>
+      {{!-- <p>Description: {{short_description}}</p> --}}
     </div>
     <form action = "/delete-favorite" method="POST">
     <input type="hidden" name="_id" value={{_id}}>
-    <button type="submit" class="btn btn-secondary btn-block ">Delete game</button>
+    <button type="submit" class="btn btn-success btn-block ">Delete game</button>
     </form>
   </div>
 </div>
