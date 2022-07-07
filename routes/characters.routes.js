@@ -101,16 +101,17 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
     Comment.create({ comment: comm, username: userNAME, user: userID, idApiGame: idApi, game: idGame })
         .then(result => {
             console.log(result)
-            res.redirect('/games')
+            res.redirect('/details/' + idApi)
             // res.redirect(`/details/id=${idGame}`)
             // res.redirect(req.get('referer'));
         })
         .catch(err => console.log(err))
 })
 
-router.post('/details', (req, res) => {
+
+router.get('/details/:id', (req, res) => {
     const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date, comment } = req.body
-    const idGame = req.body.id
+    const idGame = req.params.id
     // console.log(idGame)
     console.log(req.session.user)
 
@@ -126,31 +127,49 @@ router.post('/details', (req, res) => {
         .catch(err => console.log(err));
 })
 
+// router.post('/details', (req, res) => {
+//     const query = { id, title, thumbnail, short_description, game_url, genre, platform, publisher, release_date, comment } = req.body
+//     const idGame = req.body.id
+//     // console.log(idGame)
+//     console.log(req.session.user)
+
+//     gamesAPI
+//         .getGameByID(idGame)
+//         .then((gameDetails) => {
+//             return Comment.find({ idApiGame: idGame })
+//                 .then((singleComment) => {
+//                     res.render(`games/details`, { gameDetails: gameDetails.data, singleComment: singleComment, user: req.session.user })
+//                 })
+//                 .catch(err => console.log(err));
+//         })
+//         .catch(err => console.log(err));
+// })
+
 router.post("/edit-comment", isLoggedIn, (req, res) => {
-    const query = ({ commentID, comment, username, apiID } = req.body);
-    console.log("Comment:", query);
+    const query = ({ commentID, comment, username, idAPI } = req.body);
+    console.log("QUERY:", req.body);
     if (req.session.user.username === username) {
         Comment.updateOne({ _id: commentID }, { comment: comment })
             .then(() => {
-                res.redirect('/games');
+                res.redirect('/details/' + idAPI)
             })
             .catch((err) => console.log(err));
     }
-    else { res.redirect("/games"); }
+    else { res.redirect('/details/' + idAPI); }
 });
 
 router.post("/delete-comment", isLoggedIn, (req, res) => {
-    const query = ({ commentID, username } = req.body);
-    console.log("Username:", query);
+    const query = ({ commentID, username, idAPI } = req.body);
+    console.log("QUERY:", query);
     if (req.session.user.username === username) {
         Comment.deleteOne({ _id: commentID })
             .then(() => {
 
-                res.redirect("/games");
+                res.redirect('/details/' + idAPI)
             })
             .catch((err) => console.log(err));
     }
-    else { res.redirect("/games"); }
+    else { res.redirect('/details/' + idAPI) }
 });
 
 
