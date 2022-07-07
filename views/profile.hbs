@@ -8,8 +8,9 @@
 {{#each userGames.favorites}}
 <div class='col-sm-4 mb-3'>
     <div class='card bg-dark text-white shadow-sm'>
-      <form action = "/details" method="POST">
+     <form action = "/details/{{id}}" method="GET">
       <input type="hidden" name="id" value="{{id}}">
+      <input type="hidden" name="title" value="{{title}}">
       <button class="btn btn-default">
       <img src="{{thumbnail}}" class="img-fluid"/></button>
       </form>
