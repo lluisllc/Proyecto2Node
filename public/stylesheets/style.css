@@ -1,6 +1,20 @@
+@font-face{
+src: url(/stylesheets/RubikMoonrocks-Regular.ttf);
+font-family: rocks;
+}
+
+@font-face{
+  src: url(/stylesheets/THICCCBOI-ExtraBold.ttf);
+  font-family: thiccc;
+  }
+
+
+
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px;
+  font-family: thiccc;
   background-image:url(../images/textura2.png);
   background-size: cover;
   background-attachment: fixed
@@ -27,6 +41,7 @@ h1 {
   align-content: center;
 }
 
-/* .font{
-font-family:
-} */
+.font{
+font-family: thiccc;
+color:rgb(133, 239, 97);
+} 
