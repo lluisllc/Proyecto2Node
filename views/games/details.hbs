@@ -2,9 +2,9 @@
 <div class="card-deck">
   <div class="card bg-dark text-white mt-3 mb-3">
     <img class="card-img" src={{thumbnail}} alt="Card image">
-    <div class="card-img-overlay">
+    {{!-- <div class="card-img-overlay">
       <h4 class="card-title">{{title}}</h4>
-    </div>
+    </div> --}}
   </div>
   <div class="card text-white bg-dark mt-3 mb-3" >
     <div class="card-body">
@@ -17,7 +17,7 @@
 {{#with gameDetails}}
   <div class="card text-white bg-dark mb-3">
     <div class="card-body">
-      <p class="card-text"><h4>More Info: </h4><p>
+      <p class="card-text"><h4>{{title}}: </h4><p>
       <p class="card-text">{{genre}}</p>
       <p class="card-text">{{platform}}</p>
       <p class="card-text">{{publisher}}</p>
